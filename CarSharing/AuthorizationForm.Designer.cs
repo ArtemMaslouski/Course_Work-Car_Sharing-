@@ -35,6 +35,7 @@
             this.EnterButton = new System.Windows.Forms.Button();
             this.RegistartionButton = new System.Windows.Forms.Button();
             this.ExitButtonAuthorizationForm = new System.Windows.Forms.Button();
+            this.WarningLabelAuthorization = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // loginLabel
@@ -85,6 +86,7 @@
             this.EnterButton.TabIndex = 4;
             this.EnterButton.Text = "Войти";
             this.EnterButton.UseVisualStyleBackColor = true;
+            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
             // RegistartionButton
             // 
@@ -107,11 +109,23 @@
             this.ExitButtonAuthorizationForm.UseVisualStyleBackColor = true;
             this.ExitButtonAuthorizationForm.Click += new System.EventHandler(this.ExitButtonAuthorizationForm_Click);
             // 
+            // WarningLabelAuthorization
+            // 
+            this.WarningLabelAuthorization.AutoSize = true;
+            this.WarningLabelAuthorization.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WarningLabelAuthorization.ForeColor = System.Drawing.Color.Red;
+            this.WarningLabelAuthorization.Location = new System.Drawing.Point(240, 282);
+            this.WarningLabelAuthorization.Name = "WarningLabelAuthorization";
+            this.WarningLabelAuthorization.Size = new System.Drawing.Size(293, 15);
+            this.WarningLabelAuthorization.TabIndex = 6;
+            this.WarningLabelAuthorization.Text = "Неправильный логин или пароль. Повторите вход";
+            // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 445);
+            this.Controls.Add(this.WarningLabelAuthorization);
             this.Controls.Add(this.ExitButtonAuthorizationForm);
             this.Controls.Add(this.RegistartionButton);
             this.Controls.Add(this.EnterButton);
@@ -135,5 +149,6 @@
         private System.Windows.Forms.Button EnterButton;
         private System.Windows.Forms.Button RegistartionButton;
         private System.Windows.Forms.Button ExitButtonAuthorizationForm;
+        private System.Windows.Forms.Label WarningLabelAuthorization;
     }
 }

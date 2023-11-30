@@ -46,6 +46,7 @@ namespace CarSharing
 
         private void CreateAccountButton_Click(object sender, EventArgs e)
         {
+            AuthorizationForm authorization = new AuthorizationForm();
             //Запись из TextBox в переменную
             string loginUser = LoginRegistartionTextBox.Text;
             string passwordUser =PasswordRegistrationFormTextBox.Text;
@@ -61,6 +62,12 @@ namespace CarSharing
 
             //Функция,которая добавляет данные в Базу Данных
             addDataToDB(loginUser,passwordUser);
+
+            authorization.Show();
+            this.Close();
+
+
+
 
         }
     }
