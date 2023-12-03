@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -58,11 +59,22 @@
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.Load += new System.EventHandler(this.gMapControl1_Load);
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(671, 415);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(75, 23);
+            this.ExitButton.TabIndex = 1;
+            this.ExitButton.Text = "Выход";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.gMapControl1);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
@@ -73,5 +85,6 @@
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
