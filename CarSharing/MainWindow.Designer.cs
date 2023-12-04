@@ -30,6 +30,12 @@
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.GetLocation = new System.Windows.Forms.Button();
+            this.ReservationButton = new System.Windows.Forms.Button();
+            this.XCoordinate = new System.Windows.Forms.Label();
+            this.YCoordinate = new System.Windows.Forms.Label();
+            this.XtextBox = new System.Windows.Forms.TextBox();
+            this.YtextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -58,10 +64,11 @@
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.Load += new System.EventHandler(this.gMapControl1_Load);
+            this.gMapControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gMapControl1_MouseClick);
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(671, 415);
+            this.ExitButton.Location = new System.Drawing.Point(182, 415);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 1;
@@ -69,22 +76,90 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // GetLocation
+            // 
+            this.GetLocation.Location = new System.Drawing.Point(27, 415);
+            this.GetLocation.Name = "GetLocation";
+            this.GetLocation.Size = new System.Drawing.Size(126, 22);
+            this.GetLocation.TabIndex = 2;
+            this.GetLocation.Text = "Моё местоположение";
+            this.GetLocation.UseVisualStyleBackColor = true;
+            this.GetLocation.Click += new System.EventHandler(this.GetLocation_Click);
+            // 
+            // ReservationButton
+            // 
+            this.ReservationButton.Location = new System.Drawing.Point(273, 416);
+            this.ReservationButton.Name = "ReservationButton";
+            this.ReservationButton.Size = new System.Drawing.Size(174, 20);
+            this.ReservationButton.TabIndex = 3;
+            this.ReservationButton.Text = "Забронировать автомобиль";
+            this.ReservationButton.UseVisualStyleBackColor = true;
+            this.ReservationButton.Click += new System.EventHandler(this.ReservationButton_Click);
+            // 
+            // XCoordinate
+            // 
+            this.XCoordinate.AutoSize = true;
+            this.XCoordinate.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.XCoordinate.Location = new System.Drawing.Point(605, 15);
+            this.XCoordinate.Name = "XCoordinate";
+            this.XCoordinate.Size = new System.Drawing.Size(23, 22);
+            this.XCoordinate.TabIndex = 4;
+            this.XCoordinate.Text = "X";
+            // 
+            // YCoordinate
+            // 
+            this.YCoordinate.AutoSize = true;
+            this.YCoordinate.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.YCoordinate.Location = new System.Drawing.Point(605, 61);
+            this.YCoordinate.Name = "YCoordinate";
+            this.YCoordinate.Size = new System.Drawing.Size(23, 22);
+            this.YCoordinate.TabIndex = 5;
+            this.YCoordinate.Text = "Y";
+            // 
+            // XtextBox
+            // 
+            this.XtextBox.Location = new System.Drawing.Point(643, 17);
+            this.XtextBox.Name = "XtextBox";
+            this.XtextBox.ReadOnly = true;
+            this.XtextBox.Size = new System.Drawing.Size(103, 20);
+            this.XtextBox.TabIndex = 6;
+            // 
+            // YtextBox
+            // 
+            this.YtextBox.Location = new System.Drawing.Point(643, 64);
+            this.YtextBox.Name = "YtextBox";
+            this.YtextBox.ReadOnly = true;
+            this.YtextBox.Size = new System.Drawing.Size(103, 20);
+            this.YtextBox.TabIndex = 7;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.YtextBox);
+            this.Controls.Add(this.XtextBox);
+            this.Controls.Add(this.YCoordinate);
+            this.Controls.Add(this.XCoordinate);
+            this.Controls.Add(this.ReservationButton);
+            this.Controls.Add(this.GetLocation);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.gMapControl1);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private GMap.NET.WindowsForms.GMapControl gMapControl1;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button GetLocation;
+        public GMap.NET.WindowsForms.GMapControl gMapControl1;
+        private System.Windows.Forms.Button ReservationButton;
+        private System.Windows.Forms.Label XCoordinate;
+        private System.Windows.Forms.Label YCoordinate;
+        private System.Windows.Forms.TextBox XtextBox;
+        private System.Windows.Forms.TextBox YtextBox;
     }
 }
