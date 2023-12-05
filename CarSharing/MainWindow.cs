@@ -31,6 +31,8 @@ namespace CarSharing
 
             map.LoadMarker(gMapControl1);
 
+            point.GetMyLocation(gMapControl1);
+
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -40,12 +42,12 @@ namespace CarSharing
 
         private void GetLocation_Click(object sender, EventArgs e)
         {
-            point.GetLocation(gMapControl1);
+
         }
 
         private void ReservationButton_Click(object sender, EventArgs e)
         {
- 
+            
         }
 
         private void gMapControl1_MouseClick(object sender, MouseEventArgs e)

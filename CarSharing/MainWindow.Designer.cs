@@ -30,7 +30,6 @@
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.ExitButton = new System.Windows.Forms.Button();
-            this.GetLocation = new System.Windows.Forms.Button();
             this.ReservationButton = new System.Windows.Forms.Button();
             this.XCoordinate = new System.Windows.Forms.Label();
             this.YCoordinate = new System.Windows.Forms.Label();
@@ -68,7 +67,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(182, 415);
+            this.ExitButton.Location = new System.Drawing.Point(27, 416);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 1;
@@ -76,19 +75,9 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // GetLocation
-            // 
-            this.GetLocation.Location = new System.Drawing.Point(27, 415);
-            this.GetLocation.Name = "GetLocation";
-            this.GetLocation.Size = new System.Drawing.Size(126, 22);
-            this.GetLocation.TabIndex = 2;
-            this.GetLocation.Text = "Моё местоположение";
-            this.GetLocation.UseVisualStyleBackColor = true;
-            this.GetLocation.Click += new System.EventHandler(this.GetLocation_Click);
-            // 
             // ReservationButton
             // 
-            this.ReservationButton.Location = new System.Drawing.Point(273, 416);
+            this.ReservationButton.Location = new System.Drawing.Point(137, 419);
             this.ReservationButton.Name = "ReservationButton";
             this.ReservationButton.Size = new System.Drawing.Size(174, 20);
             this.ReservationButton.TabIndex = 3;
@@ -142,7 +131,6 @@
             this.Controls.Add(this.YCoordinate);
             this.Controls.Add(this.XCoordinate);
             this.Controls.Add(this.ReservationButton);
-            this.Controls.Add(this.GetLocation);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.gMapControl1);
             this.Name = "MainWindow";
@@ -154,7 +142,6 @@
 
         #endregion
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.Button GetLocation;
         public GMap.NET.WindowsForms.GMapControl gMapControl1;
         private System.Windows.Forms.Button ReservationButton;
         private System.Windows.Forms.Label XCoordinate;
