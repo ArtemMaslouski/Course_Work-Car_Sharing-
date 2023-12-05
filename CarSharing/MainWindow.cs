@@ -40,7 +40,7 @@ namespace CarSharing
 
         private void GetLocation_Click(object sender, EventArgs e)
         {
-            point.GetLocation();
+            point.GetLocation(gMapControl1);
         }
 
         private void ReservationButton_Click(object sender, EventArgs e)
