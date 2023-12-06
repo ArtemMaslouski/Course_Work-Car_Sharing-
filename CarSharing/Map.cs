@@ -19,8 +19,8 @@ namespace CarSharing
         {
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
             gMap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-            gMap.MinZoom = 2;
-            gMap.MaxZoom = 16;
+            gMap.MinZoom = 1;
+            gMap.MaxZoom = 20;
             gMap.Zoom = 4;
             gMap.Position = new GMap.NET.PointLatLng(53.896651, 27.555887);
             gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;

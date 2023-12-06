@@ -47,12 +47,17 @@ namespace CarSharing
 
         private void ReservationButton_Click(object sender, EventArgs e)
         {
-            
+            //gMapControl1_OnMarkerClick(gMapControl1,gMapControl1_MouseClick);
         }
 
         private void gMapControl1_MouseClick(object sender, MouseEventArgs e)
         {
             map.GetLocation(gMapControl1,e,XtextBox,YtextBox);
+        }
+
+        private void gMapControl1_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+            MessageBox.Show("Вы кликнули на маркер");
         }
     }
 }
