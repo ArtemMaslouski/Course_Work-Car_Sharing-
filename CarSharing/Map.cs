@@ -220,5 +220,11 @@ namespace CarSharing
                 Y.Text = Convert.ToString(lng);
             }
         }
+
+        public void ReserveMarker(GMap.NET.WindowsForms.GMapControl gMap,GMapMarker item,TextBox X, TextBox Y)
+        {
+            X.Text = item.Position.Lat.ToString();
+            Y.Text = item.Position.Lng.ToString();
+        }
     }
 }
