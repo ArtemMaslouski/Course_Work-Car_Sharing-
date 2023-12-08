@@ -40,12 +40,6 @@ namespace CarSharing
             Close();
         }
 
-
-        private void ReservationButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void gMapControl1_MouseClick(object sender, MouseEventArgs e)
         {
             map.GetLocation(gMapControl1,e,XtextBox,YtextBox);
@@ -53,7 +47,12 @@ namespace CarSharing
 
         private void gMapControl1_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            map.ReserveMarker(gMapControl1, item, XtextBox, YtextBox);
+            map.ShowMarkerCoordinates(gMapControl1, item, XtextBox, YtextBox);
+        }
+
+        private void ReservationButton_Click_1(object sender, EventArgs e)
+        {
+            map.ReservationOfCar(XtextBox, YtextBox, gMapControl1);
         }
     }
 }

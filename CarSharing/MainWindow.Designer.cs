@@ -30,7 +30,6 @@
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.ExitButton = new System.Windows.Forms.Button();
-            this.ReservationButton = new System.Windows.Forms.Button();
             this.XCoordinate = new System.Windows.Forms.Label();
             this.YCoordinate = new System.Windows.Forms.Label();
             this.XtextBox = new System.Windows.Forms.TextBox();
@@ -39,6 +38,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ReservationButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -83,16 +83,6 @@
             this.ExitButton.Text = "Выход";
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
-            // 
-            // ReservationButton
-            // 
-            this.ReservationButton.Location = new System.Drawing.Point(137, 419);
-            this.ReservationButton.Name = "ReservationButton";
-            this.ReservationButton.Size = new System.Drawing.Size(174, 20);
-            this.ReservationButton.TabIndex = 3;
-            this.ReservationButton.Text = "Забронировать автомобиль";
-            this.ReservationButton.UseVisualStyleBackColor = true;
-            this.ReservationButton.Click += new System.EventHandler(this.ReservationButton_Click);
             // 
             // XCoordinate
             // 
@@ -173,17 +163,27 @@
             this.dataGridView1.Size = new System.Drawing.Size(490, 308);
             this.dataGridView1.TabIndex = 0;
             // 
+            // ReservationButton
+            // 
+            this.ReservationButton.Location = new System.Drawing.Point(133, 416);
+            this.ReservationButton.Name = "ReservationButton";
+            this.ReservationButton.Size = new System.Drawing.Size(115, 23);
+            this.ReservationButton.TabIndex = 9;
+            this.ReservationButton.Text = "Забронировать";
+            this.ReservationButton.UseVisualStyleBackColor = true;
+            this.ReservationButton.Click += new System.EventHandler(this.ReservationButton_Click_1);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ReservationButton);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.YtextBox);
             this.Controls.Add(this.XtextBox);
             this.Controls.Add(this.YCoordinate);
             this.Controls.Add(this.XCoordinate);
-            this.Controls.Add(this.ReservationButton);
             this.Controls.Add(this.ExitButton);
             this.Name = "MainWindow";
             this.Text = "MainWindow";
@@ -199,7 +199,6 @@
         #endregion
         private System.Windows.Forms.Button ExitButton;
         public GMap.NET.WindowsForms.GMapControl gMapControl1;
-        private System.Windows.Forms.Button ReservationButton;
         private System.Windows.Forms.Label XCoordinate;
         private System.Windows.Forms.Label YCoordinate;
         private System.Windows.Forms.TextBox XtextBox;
@@ -208,5 +207,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button ReservationButton;
     }
 }

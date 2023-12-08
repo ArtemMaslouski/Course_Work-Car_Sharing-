@@ -15,6 +15,7 @@ namespace CarSharing
 {
     internal class Map
     {
+        GMapOverlay cars = new GMapOverlay("Автомобили");
         public void GetMap(GMap.NET.WindowsForms.GMapControl gMap)
         {
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
@@ -186,7 +187,6 @@ namespace CarSharing
         public void LoadMarker(GMap.NET.WindowsForms.GMapControl gMap)
         {
             List<Point> carsCoordinate = new List<Point>();
-            GMapOverlay cars = new GMapOverlay("Автомобили");
 
             gMap.Overlays.Add(cars);
 
@@ -221,10 +221,36 @@ namespace CarSharing
             }
         }
 
-        public void ReserveMarker(GMap.NET.WindowsForms.GMapControl gMap,GMapMarker item,TextBox X, TextBox Y)
+        public void ShowMarkerCoordinates(GMap.NET.WindowsForms.GMapControl gMap, GMapMarker item, TextBox X, TextBox Y)
         {
+            Point point = new Point();
+
             X.Text = item.Position.Lat.ToString();
             Y.Text = item.Position.Lng.ToString();
+
         }
+
+        public void ReservationOfCar(TextBox X, TextBox Y, GMap.NET.WindowsForms.GMapControl gMap)
+        {
+            double lat = Convert.ToDouble(X.Text);
+            double lng = Convert.ToDouble(Y.Text);
+
+
+            if (cars != null)
+            {
+                GMapMarker markerToRemove = cars.Markers.FirstOrDefault(m => m.Position.Lat == lat && m.Position.Lng == lng);
+
+                if (markerToRemove != null)
+                {
+                    cars.Markers.Remove(markerToRemove);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите маркер!");
+            }
+        }
+
+
     }
 }

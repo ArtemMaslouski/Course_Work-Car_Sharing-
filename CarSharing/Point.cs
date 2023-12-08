@@ -11,6 +11,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.ToolTips;
 
+
 namespace CarSharing
 {
     public class Point
@@ -71,6 +72,7 @@ namespace CarSharing
                 throw new Exception("Данные не получены!");
             }
         }
+
 
         
     }
