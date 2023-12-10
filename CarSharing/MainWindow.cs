@@ -54,5 +54,10 @@ namespace CarSharing
         {
             map.ReservationOfCar(XtextBox, YtextBox, gMapControl1,ReservationDataGridView, MarktextBox, ModeltextBox, YeartextBox, CapacitytextBox);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            map.ReturnAuto(gMapControl1,XtextBox,YtextBox,MarktextBox,ModeltextBox,YeartextBox,CapacitytextBox,ReservationDataGridView);
+        }
     }
 }

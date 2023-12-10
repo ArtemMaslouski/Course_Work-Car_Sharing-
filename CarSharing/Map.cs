@@ -250,40 +250,93 @@ namespace CarSharing
 
             double lat = Convert.ToDouble(X.Text);
             double lng = Convert.ToDouble(Y.Text);
-
-            DataTable table = new DataTable();
-            table.Columns.Add("Марка");
-            table.Columns.Add("Модель");
-            table.Columns.Add("Год");
-            table.Columns.Add("Объём");
-
-
-            if (cars != null)
+            if (lat != null && lng != null)
             {
-                GMapMarker markerToRemove = cars.Markers.FirstOrDefault(m => m.Position.Lat == lat && m.Position.Lng == lng);
+                DataTable table = new DataTable();
+                table.Columns.Add("Марка");
+                table.Columns.Add("Модель");
+                table.Columns.Add("Год");
+                table.Columns.Add("Объём");
 
-                if (markerToRemove != null)
+                string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt";
+                string coordinates = $"{lat};{lng}";
+
+                if (cars != null)
                 {
-                    if (markerToRemove.ToolTipText != "Моё местоположение")
+                    GMapMarker markerToRemove = cars.Markers.FirstOrDefault(m => m.Position.Lat == lat && m.Position.Lng == lng);
+
+                    if (markerToRemove != null)
                     {
-                        cars.Markers.Remove(markerToRemove);
+                        if (markerToRemove.ToolTipText != "Моё местоположение")
+                        {
+                            cars.Markers.Remove(markerToRemove);
+                            var lines = File.ReadAllLines(path).Where(l => l != coordinates).ToArray();
+                            File.WriteAllLines(path, lines);
 
-                        string[] newRow = markerToRemove.ToolTipText.Replace(";","").Split(' ');
-                        table.Rows.Add(newRow[1], newRow[3], newRow[5], newRow[7]);
 
-                        view.DataSource = table;
-                        MessageBox.Show("Автомобиль был успешно забронирован!", "Внимание!");
-                        X.Clear();
-                        Y.Clear();
+                            string[] newRow = markerToRemove.ToolTipText.Replace(";", "").Split(' ');
+                            table.Rows.Add(newRow[1], newRow[3], newRow[5], newRow[7]);
+
+                            view.DataSource = table;
+                            MessageBox.Show("Автомобиль был успешно забронирован!", "Внимание!");
+                            X.Clear();
+                            Y.Clear();
+                        }
+
+
                     }
-                   
+                }
+                else
+                {
+                    MessageBox.Show("Выберите маркер!");
+                }
+            }
 
+            else 
+            {
+                MessageBox.Show("Выберите метку!","Внимание!");
+            }
+            
+        }
+
+        public void ReturnAuto(GMap.NET.WindowsForms.GMapControl gMap, TextBox X, TextBox Y,TextBox Mark,TextBox Model,TextBox Year,TextBox Capacity,DataGridView view)
+        {
+            if (X.Text != "" && Y.Text != "")
+            {
+                gMap.Overlays.Add(cars);
+
+                double latitude = Convert.ToDouble(X.Text);
+                double longitude = Convert.ToDouble(Y.Text);
+
+                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), GMarkerGoogleType.red_dot);
+                marker.ToolTip = new GMapRoundedToolTip(marker);
+
+                string infoFromDGV = "";
+
+                for (int i = 0; i < view.ColumnCount; i++)
+                {
+                    infoFromDGV += view[i, 0].Value.ToString() + " ";
+                }
+
+                string[] info = infoFromDGV.Split(' ');
+
+                marker.ToolTipText = "Марка: " + info[0] + "\nМодель: " + info[1] + "\nГод: " + info[2] + "\nОбъём: ";
+
+                cars.Markers.Add(marker);
+
+                string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt";
+                string text = $"{latitude};{longitude}";
+
+                using (StreamWriter wr = new StreamWriter(path))
+                {
+                    wr.WriteLine(text);
                 }
             }
             else
             {
-                MessageBox.Show("Выберите маркер!");
+                MessageBox.Show("Проверьте наличие забронированной машины или выбранных координат","Внимание");
             }
+            
         }
 
 
