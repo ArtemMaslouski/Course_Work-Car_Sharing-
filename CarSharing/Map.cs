@@ -198,16 +198,16 @@ namespace CarSharing
                 carsCoordinate.Add(new Point(Convert.ToDouble(Coordinates[0]), Convert.ToDouble(Coordinates[1])));
             }
 
+            string[] CarInfo = File.ReadAllLines("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarInfo.txt");
             for (int i = 0; i < carsCoordinate.Count; i++)
             {
-                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y),GMarkerGoogleType.red_dot);
+                string[] Info = CarInfo[i].Split(' ');
+                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), GMarkerGoogleType.red_dot);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
 
-                marker.ToolTipText = "Автомобиль:Ауди\nОбъем двигателя:1.6";
+                marker.ToolTipText = "Марка: " + Info[0] + '\n' +  "Модель: "+ Info[1] + '\n' + "Год: " + Info[2] + '\n' +  "Объём" + Info[3];
                 cars.Markers.Add(marker);
             }
-
-
         }
 
         public void GetLocation(GMap.NET.WindowsForms.GMapControl gMap,MouseEventArgs e,TextBox X,TextBox Y)
@@ -237,7 +237,10 @@ namespace CarSharing
             double lng = Convert.ToDouble(Y.Text);
 
             DataTable table = new DataTable();
-            table.Columns.Add("Инфа");
+            table.Columns.Add("Марка");
+            table.Columns.Add("Модель");
+            table.Columns.Add("Год");
+            table.Columns.Add("Объём");
 
 
             if (cars != null)
@@ -246,12 +249,21 @@ namespace CarSharing
 
                 if (markerToRemove != null)
                 {
-                    cars.Markers.Remove(markerToRemove);
+                    if (markerToRemove.ToolTipText != "Моё местоположение")
+                    {
+                        cars.Markers.Remove(markerToRemove);
 
-                    string newRow = markerToRemove.ToolTipText;
-                    table.Rows.Add(newRow);
+                        string[] newRow = markerToRemove.ToolTipText.Split('\n');
+                        table.Rows.Add(newRow[0], newRow[1], newRow[2], newRow[3]);
 
-                    view.DataSource = table;
+                        view.DataSource = table;
+                        MessageBox.Show("Автомобиль был успешно забронирован!", "Внимание!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Нельзя забронировать моё местоположение!","Внимание!");
+                    }
+                   
 
                 }
             }

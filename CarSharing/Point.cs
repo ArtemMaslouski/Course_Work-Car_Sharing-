@@ -56,9 +56,9 @@ namespace CarSharing
                     double Latitude = coord.Latitude;
                     double Longitude = coord.Longitude;
 
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude), new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\MyDestination.png"));
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude),GMarkerGoogleType.red_dot);
                     marker.ToolTipText = "Моё местоположение";
-                    marker.Size = new Size(100,100);
+                    MyLocation.Markers.Add(marker);
 
                 }
                 else
@@ -73,8 +73,5 @@ namespace CarSharing
                 throw new Exception("Данные не получены!");
             }
         }
-
-
-        
     }
 }

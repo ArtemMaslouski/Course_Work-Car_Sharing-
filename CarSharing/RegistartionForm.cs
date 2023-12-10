@@ -65,10 +65,6 @@ namespace CarSharing
 
             authorization.Show();
             this.Close();
-
-
-
-
         }
     }
 }

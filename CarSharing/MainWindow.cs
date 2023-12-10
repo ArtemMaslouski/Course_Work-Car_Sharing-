@@ -37,7 +37,7 @@ namespace CarSharing
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void gMapControl1_MouseClick(object sender, MouseEventArgs e)
