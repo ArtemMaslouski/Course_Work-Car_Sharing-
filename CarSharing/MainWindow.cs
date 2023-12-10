@@ -47,12 +47,12 @@ namespace CarSharing
 
         private void gMapControl1_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            map.ShowMarkerCoordinates(gMapControl1, item, XtextBox, YtextBox);
+            map.ShowMarkerCoordinates(gMapControl1, item, XtextBox, YtextBox,MarktextBox,ModeltextBox,YeartextBox,CapacitytextBox);
         }
 
         private void ReservationButton_Click_1(object sender, EventArgs e)
         {
-            map.ReservationOfCar(XtextBox, YtextBox, gMapControl1,ReservationDataGridView);
+            map.ReservationOfCar(XtextBox, YtextBox, gMapControl1,ReservationDataGridView, MarktextBox, ModeltextBox, YeartextBox, CapacitytextBox);
         }
     }
 }

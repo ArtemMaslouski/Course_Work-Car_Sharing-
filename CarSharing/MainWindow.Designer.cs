@@ -39,6 +39,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ReservationDataGridView = new System.Windows.Forms.DataGridView();
             this.ReservationButton = new System.Windows.Forms.Button();
+            this.MarkLabel = new System.Windows.Forms.Label();
+            this.Modellabel = new System.Windows.Forms.Label();
+            this.Yearlabel = new System.Windows.Forms.Label();
+            this.Capacitylabel = new System.Windows.Forms.Label();
+            this.MarktextBox = new System.Windows.Forms.TextBox();
+            this.ModeltextBox = new System.Windows.Forms.TextBox();
+            this.YeartextBox = new System.Windows.Forms.TextBox();
+            this.CapacitytextBox = new System.Windows.Forms.TextBox();
             this.MaintabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -76,9 +84,10 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(27, 416);
+            this.ExitButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExitButton.Location = new System.Drawing.Point(27, 406);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(75, 23);
+            this.ExitButton.Size = new System.Drawing.Size(90, 33);
             this.ExitButton.TabIndex = 1;
             this.ExitButton.Text = "Выход";
             this.ExitButton.UseVisualStyleBackColor = true;
@@ -106,18 +115,20 @@
             // 
             // XtextBox
             // 
+            this.XtextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.XtextBox.Location = new System.Drawing.Point(643, 17);
             this.XtextBox.Name = "XtextBox";
             this.XtextBox.ReadOnly = true;
-            this.XtextBox.Size = new System.Drawing.Size(103, 20);
+            this.XtextBox.Size = new System.Drawing.Size(103, 29);
             this.XtextBox.TabIndex = 6;
             // 
             // YtextBox
             // 
+            this.YtextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.YtextBox.Location = new System.Drawing.Point(643, 64);
             this.YtextBox.Name = "YtextBox";
             this.YtextBox.ReadOnly = true;
-            this.YtextBox.Size = new System.Drawing.Size(103, 20);
+            this.YtextBox.Size = new System.Drawing.Size(103, 29);
             this.YtextBox.TabIndex = 7;
             // 
             // MaintabControl
@@ -165,19 +176,104 @@
             // 
             // ReservationButton
             // 
-            this.ReservationButton.Location = new System.Drawing.Point(133, 416);
+            this.ReservationButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ReservationButton.Location = new System.Drawing.Point(144, 407);
             this.ReservationButton.Name = "ReservationButton";
-            this.ReservationButton.Size = new System.Drawing.Size(115, 23);
+            this.ReservationButton.Size = new System.Drawing.Size(188, 32);
             this.ReservationButton.TabIndex = 9;
             this.ReservationButton.Text = "Забронировать";
             this.ReservationButton.UseVisualStyleBackColor = true;
             this.ReservationButton.Click += new System.EventHandler(this.ReservationButton_Click_1);
+            // 
+            // MarkLabel
+            // 
+            this.MarkLabel.AutoSize = true;
+            this.MarkLabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MarkLabel.Location = new System.Drawing.Point(567, 136);
+            this.MarkLabel.Name = "MarkLabel";
+            this.MarkLabel.Size = new System.Drawing.Size(69, 22);
+            this.MarkLabel.TabIndex = 10;
+            this.MarkLabel.Text = "Марка";
+            // 
+            // Modellabel
+            // 
+            this.Modellabel.AutoSize = true;
+            this.Modellabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Modellabel.Location = new System.Drawing.Point(567, 185);
+            this.Modellabel.Name = "Modellabel";
+            this.Modellabel.Size = new System.Drawing.Size(77, 22);
+            this.Modellabel.TabIndex = 11;
+            this.Modellabel.Text = "Модель";
+            // 
+            // Yearlabel
+            // 
+            this.Yearlabel.AutoSize = true;
+            this.Yearlabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Yearlabel.Location = new System.Drawing.Point(567, 237);
+            this.Yearlabel.Name = "Yearlabel";
+            this.Yearlabel.Size = new System.Drawing.Size(118, 22);
+            this.Yearlabel.TabIndex = 12;
+            this.Yearlabel.Text = "Год выпуска";
+            // 
+            // Capacitylabel
+            // 
+            this.Capacitylabel.AutoSize = true;
+            this.Capacitylabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Capacitylabel.Location = new System.Drawing.Point(567, 291);
+            this.Capacitylabel.Name = "Capacitylabel";
+            this.Capacitylabel.Size = new System.Drawing.Size(68, 22);
+            this.Capacitylabel.TabIndex = 13;
+            this.Capacitylabel.Text = "Объём";
+            // 
+            // MarktextBox
+            // 
+            this.MarktextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MarktextBox.Location = new System.Drawing.Point(683, 136);
+            this.MarktextBox.Name = "MarktextBox";
+            this.MarktextBox.ReadOnly = true;
+            this.MarktextBox.Size = new System.Drawing.Size(100, 29);
+            this.MarktextBox.TabIndex = 14;
+            // 
+            // ModeltextBox
+            // 
+            this.ModeltextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ModeltextBox.Location = new System.Drawing.Point(683, 185);
+            this.ModeltextBox.Name = "ModeltextBox";
+            this.ModeltextBox.ReadOnly = true;
+            this.ModeltextBox.Size = new System.Drawing.Size(100, 29);
+            this.ModeltextBox.TabIndex = 15;
+            // 
+            // YeartextBox
+            // 
+            this.YeartextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.YeartextBox.Location = new System.Drawing.Point(683, 239);
+            this.YeartextBox.Name = "YeartextBox";
+            this.YeartextBox.ReadOnly = true;
+            this.YeartextBox.Size = new System.Drawing.Size(100, 29);
+            this.YeartextBox.TabIndex = 16;
+            // 
+            // CapacitytextBox
+            // 
+            this.CapacitytextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CapacitytextBox.Location = new System.Drawing.Point(683, 291);
+            this.CapacitytextBox.Name = "CapacitytextBox";
+            this.CapacitytextBox.ReadOnly = true;
+            this.CapacitytextBox.Size = new System.Drawing.Size(100, 29);
+            this.CapacitytextBox.TabIndex = 17;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CapacitytextBox);
+            this.Controls.Add(this.YeartextBox);
+            this.Controls.Add(this.ModeltextBox);
+            this.Controls.Add(this.MarktextBox);
+            this.Controls.Add(this.Capacitylabel);
+            this.Controls.Add(this.Yearlabel);
+            this.Controls.Add(this.Modellabel);
+            this.Controls.Add(this.MarkLabel);
             this.Controls.Add(this.ReservationButton);
             this.Controls.Add(this.MaintabControl);
             this.Controls.Add(this.YtextBox);
@@ -208,5 +304,13 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView ReservationDataGridView;
         private System.Windows.Forms.Button ReservationButton;
+        private System.Windows.Forms.Label MarkLabel;
+        private System.Windows.Forms.Label Modellabel;
+        private System.Windows.Forms.Label Yearlabel;
+        private System.Windows.Forms.Label Capacitylabel;
+        private System.Windows.Forms.TextBox MarktextBox;
+        private System.Windows.Forms.TextBox ModeltextBox;
+        private System.Windows.Forms.TextBox YeartextBox;
+        private System.Windows.Forms.TextBox CapacitytextBox;
     }
 }

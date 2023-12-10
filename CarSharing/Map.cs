@@ -205,7 +205,7 @@ namespace CarSharing
                 GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), GMarkerGoogleType.red_dot);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
 
-                marker.ToolTipText = "Марка: " + Info[0] + '\n' +  "Модель: "+ Info[1] + '\n' + "Год: " + Info[2] + '\n' +  "Объём" + Info[3];
+                marker.ToolTipText = "Марка: " + Info[0] + " \n" +  "Модель: "+ Info[1] + " \n" + "Год: " + Info[2] + " \n" +  "Объём " + Info[3];
                 cars.Markers.Add(marker);
             }
         }
@@ -222,17 +222,32 @@ namespace CarSharing
             }
         }
 
-        public void ShowMarkerCoordinates(GMap.NET.WindowsForms.GMapControl gMap, GMapMarker item, TextBox X, TextBox Y)
+        public void ShowMarkerCoordinates(GMap.NET.WindowsForms.GMapControl gMap, GMapMarker item, TextBox X, TextBox Y,TextBox Mark,TextBox Model,TextBox Year,TextBox Capacity)
         {
-            Point point = new Point();
+            Mark.Clear();
+            Model.Clear();
+            Year.Clear();
+            Capacity.Clear();
 
             X.Text = item.Position.Lat.ToString();
             Y.Text = item.Position.Lng.ToString();
 
+            string[] Info = item.ToolTipText.Replace(";","").Split(' ');
+            Mark.Text = Info[1];
+            Model.Text = Info[3];
+            Year.Text = Info[5];
+            Capacity.Text = Info[7];
+
         }
 
-        public void ReservationOfCar(TextBox X, TextBox Y, GMap.NET.WindowsForms.GMapControl gMap,DataGridView view)
+        public void ReservationOfCar(TextBox X, TextBox Y, GMap.NET.WindowsForms.GMapControl gMap,DataGridView view, TextBox Mark, TextBox Model, TextBox Year, TextBox Capacity)
         {
+            
+            Mark.Clear();
+            Model.Clear();
+            Year.Clear();
+            Capacity.Clear();
+
             double lat = Convert.ToDouble(X.Text);
             double lng = Convert.ToDouble(Y.Text);
 
@@ -253,15 +268,13 @@ namespace CarSharing
                     {
                         cars.Markers.Remove(markerToRemove);
 
-                        string[] newRow = markerToRemove.ToolTipText.Split('\n');
-                        table.Rows.Add(newRow[0], newRow[1], newRow[2], newRow[3]);
+                        string[] newRow = markerToRemove.ToolTipText.Replace(";","").Split(' ');
+                        table.Rows.Add(newRow[1], newRow[3], newRow[5], newRow[7]);
 
                         view.DataSource = table;
                         MessageBox.Show("Автомобиль был успешно забронирован!", "Внимание!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нельзя забронировать моё местоположение!","Внимание!");
+                        X.Clear();
+                        Y.Clear();
                     }
                    
 
