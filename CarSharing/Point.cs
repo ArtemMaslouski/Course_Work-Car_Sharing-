@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Device.Location;
 using System.Windows.Forms;
@@ -55,9 +56,9 @@ namespace CarSharing
                     double Latitude = coord.Latitude;
                     double Longitude = coord.Longitude;
 
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude,Longitude),GMarkerGoogleType.red_dot);
-                    MyLocation.Markers.Add(marker);
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude), new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\MyDestination.png"));
                     marker.ToolTipText = "Моё местоположение";
+                    marker.Size = new Size(100,100);
 
                 }
                 else

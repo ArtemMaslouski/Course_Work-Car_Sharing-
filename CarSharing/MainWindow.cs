@@ -52,7 +52,7 @@ namespace CarSharing
 
         private void ReservationButton_Click_1(object sender, EventArgs e)
         {
-            map.ReservationOfCar(XtextBox, YtextBox, gMapControl1);
+            map.ReservationOfCar(XtextBox, YtextBox, gMapControl1,ReservationDataGridView);
         }
     }
 }

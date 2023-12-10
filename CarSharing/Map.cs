@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
+using System.Data;
 
 namespace CarSharing
 {
@@ -202,7 +203,7 @@ namespace CarSharing
                 GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y),GMarkerGoogleType.red_dot);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
 
-                marker.ToolTipText = "Пока хз";
+                marker.ToolTipText = "Автомобиль:Ауди\nОбъем двигателя:1.6";
                 cars.Markers.Add(marker);
             }
 
@@ -230,10 +231,13 @@ namespace CarSharing
 
         }
 
-        public void ReservationOfCar(TextBox X, TextBox Y, GMap.NET.WindowsForms.GMapControl gMap)
+        public void ReservationOfCar(TextBox X, TextBox Y, GMap.NET.WindowsForms.GMapControl gMap,DataGridView view)
         {
             double lat = Convert.ToDouble(X.Text);
             double lng = Convert.ToDouble(Y.Text);
+
+            DataTable table = new DataTable();
+            table.Columns.Add("Инфа");
 
 
             if (cars != null)
@@ -243,6 +247,12 @@ namespace CarSharing
                 if (markerToRemove != null)
                 {
                     cars.Markers.Remove(markerToRemove);
+
+                    string newRow = markerToRemove.ToolTipText;
+                    table.Rows.Add(newRow);
+
+                    view.DataSource = table;
+
                 }
             }
             else
