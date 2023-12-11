@@ -11,11 +11,13 @@ using System.IO;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace CarSharing
 {
     internal class Map
     {
+        GMapOverlay poligon = new GMapOverlay("Полигоны Минска");
         GMapOverlay cars = new GMapOverlay("Автомобили");
         public void GetMap(GMap.NET.WindowsForms.GMapControl gMap)
         {
@@ -36,7 +38,6 @@ namespace CarSharing
         public void DrawPolygon(GMap.NET.WindowsForms.GMapControl gMap)
         {
             //Полигон Минска(по МКАД)
-            GMapOverlay poligon = new GMapOverlay("Полигоны Минска");
 
             List<PointLatLng> minskPoints = new List<PointLatLng>();
             
@@ -233,10 +234,14 @@ namespace CarSharing
             Y.Text = item.Position.Lng.ToString();
 
             string[] Info = item.ToolTipText.Replace(";","").Split(' ');
-            Mark.Text = Info[1];
-            Model.Text = Info[3];
-            Year.Text = Info[5];
-            Capacity.Text = Info[7];
+            if (Info.Length > 2)
+            {
+                Mark.Text = Info[1];
+                Model.Text = Info[3];
+                Year.Text = Info[5];
+                Capacity.Text = Info[7];
+            }
+            
 
         }
 
@@ -308,34 +313,43 @@ namespace CarSharing
                 double latitude = Convert.ToDouble(X.Text);
                 double longitude = Convert.ToDouble(Y.Text);
 
-                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), GMarkerGoogleType.red_dot);
-                marker.ToolTip = new GMapRoundedToolTip(marker);
-
-                string infoFromDGV = "";
-
-                for (int i = 0; i < view.ColumnCount; i++)
+                if (PointInPoligon(gMap, X, Y))
                 {
-                    infoFromDGV += view[i, 0].Value.ToString() + " ";
+                    MessageBox.Show("В данном месте автомобиль оставлять запрещено!", "Внимание");
+                }
+                else 
+                {
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), GMarkerGoogleType.red_dot);
+                    marker.ToolTip = new GMapRoundedToolTip(marker);
+
+                    string infoFromDGV = "";
+
+                    for (int i = 0; i < view.ColumnCount; i++)
+                    {
+                        infoFromDGV += view[i, 0].Value.ToString() + " ";
+                    }
+
+                    string[] info = infoFromDGV.Split(' ');
+
+                    marker.ToolTipText = "Марка: " + info[0] + " \n" + "Модель: " + info[1] + " \n" + "Год: " + info[2] + " \n" + "Объём: " + info[3] + " ";
+
+                    cars.Markers.Add(marker);
+
+                    string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt";
+                    string text = $"{latitude};{longitude}";
+
+                    using (StreamWriter wr = new StreamWriter(path))
+                    {
+                        wr.WriteLine(text);
+                    }
+
+                    for (int i = 0; i < view.Rows.Count; i++)
+                    {
+                        view.Rows.Remove(view.Rows[0]);
+                    }
                 }
 
-                string[] info = infoFromDGV.Split(' ');
-
-                marker.ToolTipText = "Марка: " + info[0] + " \n" + "Модель: " + info[1] + " \n" + "Год: " + info[2] + " \n" + "Объём: " + info[3] + " ";
-
-                cars.Markers.Add(marker);
-
-                string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt";
-                string text = $"{latitude};{longitude}";
-
-                using (StreamWriter wr = new StreamWriter(path))
-                {
-                    wr.WriteLine(text);
-                }
-
-                for (int i = 0; i < view.Rows.Count; i++)
-                {
-                    view.Rows.Remove(view.Rows[0]);
-                }
+                
                
             }
             else
@@ -343,6 +357,47 @@ namespace CarSharing
                 MessageBox.Show("Проверьте наличие забронированной машины или выбранных координат","Внимание");
             }
             
+        }
+
+
+        public bool PointInPoligon(GMap.NET.WindowsForms.GMapControl gMap,TextBox X,TextBox Y)
+        {
+            gMap.Overlays.Add(poligon);
+
+            if (X.Text != "" && Y.Text != "")
+            {
+                double x = Convert.ToDouble(X.Text);
+                double y = Convert.ToDouble(Y.Text);
+
+                PointLatLng point = new PointLatLng(x, y);
+
+                var overlays = gMap.Overlays;
+                foreach (var overlay in overlays)
+                {
+                    var poligons = overlay.Polygons;
+                    foreach (var polygon in poligons)
+                    {
+                        if (polygon.Name != "Minsk Poligon")
+                        {
+                            if (polygon.IsInside(point))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                continue;
+                                
+                            }
+                        }
+                        else 
+                        {
+                            continue;
+                        }
+                    }
+                }
+
+            }
+            return false;
         }
 
 
