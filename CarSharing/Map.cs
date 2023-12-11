@@ -205,7 +205,7 @@ namespace CarSharing
                 GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), GMarkerGoogleType.red_dot);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
 
-                marker.ToolTipText = "Марка: " + Info[0] + " \n" +  "Модель: "+ Info[1] + " \n" + "Год: " + Info[2] + " \n" +  "Объём " + Info[3];
+                marker.ToolTipText = "Марка: " + Info[0] + " \n" +  "Модель: "+ Info[1] + " \n" + "Год: " + Info[2] + " \n" +  "Объём: " + Info[3] + " " ;
                 cars.Markers.Add(marker);
             }
         }
@@ -320,7 +320,7 @@ namespace CarSharing
 
                 string[] info = infoFromDGV.Split(' ');
 
-                marker.ToolTipText = "Марка: " + info[0] + "\nМодель: " + info[1] + "\nГод: " + info[2] + "\nОбъём: ";
+                marker.ToolTipText = "Марка: " + info[0] + " \n" + "Модель: " + info[1] + " \n" + "Год: " + info[2] + " \n" + "Объём: " + info[3] + " ";
 
                 cars.Markers.Add(marker);
 
@@ -331,6 +331,12 @@ namespace CarSharing
                 {
                     wr.WriteLine(text);
                 }
+
+                for (int i = 0; i < view.Rows.Count; i++)
+                {
+                    view.Rows.Remove(view.Rows[0]);
+                }
+               
             }
             else
             {
