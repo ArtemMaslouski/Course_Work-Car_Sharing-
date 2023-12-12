@@ -27,8 +27,9 @@ namespace CarSharing
         }
         public Point() { }
 
-        public void GetMyLocation(GMap.NET.WindowsForms.GMapControl gMap)
+        public List<double> GetMyLocation(GMap.NET.WindowsForms.GMapControl gMap)
         {
+            List<double> coordinates = new List<double>();
             bool abort = false;
 
             GeoCoordinate coord;
@@ -56,9 +57,14 @@ namespace CarSharing
                     double Latitude = coord.Latitude;
                     double Longitude = coord.Longitude;
 
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude),GMarkerGoogleType.red_dot);
+                    coordinates.Add(Latitude);
+                    coordinates.Add(Longitude);
+
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude),new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\MyLocation.png"));
                     marker.ToolTipText = "Моё местоположение";
                     MyLocation.Markers.Add(marker);
+
+                    return coordinates;
 
                 }
                 else

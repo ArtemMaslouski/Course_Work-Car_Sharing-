@@ -12,6 +12,7 @@ using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
 using System.Data;
 using System.Security.Cryptography;
+using System.Device.Location;
 
 namespace CarSharing
 {
@@ -203,7 +204,7 @@ namespace CarSharing
             for (int i = 0; i < carsCoordinate.Count; i++)
             {
                 string[] Info = CarInfo[i].Split(' ');
-                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), GMarkerGoogleType.red_dot);
+                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\Car.png"));
                 marker.ToolTip = new GMapRoundedToolTip(marker);
 
                 marker.ToolTipText = "Марка: " + Info[0] + " \n" +  "Модель: "+ Info[1] + " \n" + "Год: " + Info[2] + " \n" +  "Объём: " + Info[3] + " " ;
@@ -223,8 +224,12 @@ namespace CarSharing
             }
         }
 
-        public void ShowMarkerCoordinates(GMap.NET.WindowsForms.GMapControl gMap, GMapMarker item, TextBox X, TextBox Y,TextBox Mark,TextBox Model,TextBox Year,TextBox Capacity)
+        public void ShowMarkerCoordinates(GMap.NET.WindowsForms.GMapControl gMap, GMapMarker item, TextBox X, TextBox Y,TextBox Mark,TextBox Model,TextBox Year,TextBox Capacity,Label km)
         {
+            Point point = new Point();
+
+            List<double> coordinates = point.GetMyLocation(gMap);
+
             Mark.Clear();
             Model.Clear();
             Year.Clear();
@@ -232,6 +237,14 @@ namespace CarSharing
 
             X.Text = item.Position.Lat.ToString();
             Y.Text = item.Position.Lng.ToString();
+
+            GeoCoordinate MyLocation = new GeoCoordinate(coordinates[0], coordinates[1]);
+            GeoCoordinate currentCar = new GeoCoordinate(Convert.ToDouble(X.Text),Convert.ToDouble(Y.Text));
+
+            double distance = Math.Ceiling(MyLocation.GetDistanceTo(currentCar)) / 1000;
+
+            km.Text = distance.ToString() + " Км";
+
 
             string[] Info = item.ToolTipText.Replace(";","").Split(' ');
             if (Info.Length > 2)

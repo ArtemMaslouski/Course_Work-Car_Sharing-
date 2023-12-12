@@ -48,6 +48,8 @@
             this.YeartextBox = new System.Windows.Forms.TextBox();
             this.CapacitytextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.DistanceLabel = new System.Windows.Forms.Label();
+            this.KmLabel = new System.Windows.Forms.Label();
             this.MaintabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -178,7 +180,7 @@
             // ReservationButton
             // 
             this.ReservationButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ReservationButton.Location = new System.Drawing.Point(144, 407);
+            this.ReservationButton.Location = new System.Drawing.Point(136, 406);
             this.ReservationButton.Name = "ReservationButton";
             this.ReservationButton.Size = new System.Drawing.Size(188, 32);
             this.ReservationButton.TabIndex = 9;
@@ -265,7 +267,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(364, 407);
+            this.button1.Location = new System.Drawing.Point(330, 406);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(223, 32);
             this.button1.TabIndex = 18;
@@ -273,11 +275,33 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // DistanceLabel
+            // 
+            this.DistanceLabel.AutoSize = true;
+            this.DistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DistanceLabel.Location = new System.Drawing.Point(33, 366);
+            this.DistanceLabel.Name = "DistanceLabel";
+            this.DistanceLabel.Size = new System.Drawing.Size(287, 24);
+            this.DistanceLabel.TabIndex = 20;
+            this.DistanceLabel.Text = "Расстояние до автомобиля:";
+            // 
+            // KmLabel
+            // 
+            this.KmLabel.AutoSize = true;
+            this.KmLabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.KmLabel.Location = new System.Drawing.Point(326, 368);
+            this.KmLabel.Name = "KmLabel";
+            this.KmLabel.Size = new System.Drawing.Size(20, 22);
+            this.KmLabel.TabIndex = 21;
+            this.KmLabel.Text = "0";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.KmLabel);
+            this.Controls.Add(this.DistanceLabel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.CapacitytextBox);
             this.Controls.Add(this.YeartextBox);
@@ -326,5 +350,7 @@
         private System.Windows.Forms.TextBox YeartextBox;
         private System.Windows.Forms.TextBox CapacitytextBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label DistanceLabel;
+        private System.Windows.Forms.Label KmLabel;
     }
 }
