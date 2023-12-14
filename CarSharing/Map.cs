@@ -16,7 +16,7 @@ using System.Device.Location;
 
 namespace CarSharing
 {
-    internal class Map
+    public class Map
     {
         GMapOverlay poligon = new GMapOverlay("Полигоны Минска");
         GMapOverlay cars = new GMapOverlay("Автомобили");
@@ -193,18 +193,18 @@ namespace CarSharing
 
             gMap.Overlays.Add(cars);
 
-            string[] CoordinatesInFile = File.ReadAllLines("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt");
+            string[] CoordinatesInFile = File.ReadAllLines("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarInformation\\CarCoordinates.txt");
             for (int i = 0; i < CoordinatesInFile.Length; i++)
             {
                 string[] Coordinates = CoordinatesInFile[i].Split(new char[] { ';' });
                 carsCoordinate.Add(new Point(Convert.ToDouble(Coordinates[0]), Convert.ToDouble(Coordinates[1])));
             }
 
-            string[] CarInfo = File.ReadAllLines("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarInfo.txt");
+            string[] CarInfo = File.ReadAllLines("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarInformation\\CarInfo.txt");
             for (int i = 0; i < carsCoordinate.Count; i++)
             {
                 string[] Info = CarInfo[i].Split(' ');
-                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\Car.png"));
+                GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(carsCoordinate[i].X, carsCoordinate[i].Y), new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\Images\\Car.png"));
                 marker.ToolTip = new GMapRoundedToolTip(marker);
 
                 marker.ToolTipText = "Марка: " + Info[0] + " \n" +  "Модель: "+ Info[1] + " \n" + "Год: " + Info[2] + " \n" +  "Объём: " + Info[3] + " " ;
@@ -219,9 +219,24 @@ namespace CarSharing
                 PointLatLng point = gMap.FromLocalToLatLng(e.X, e.Y);
                 double lat = point.Lat;
                 double lng = point.Lng;
-                X.Text = Convert.ToString(lat);
-                Y.Text = Convert.ToString(lng);
+
+                List<string> coordinates = Convertion(lat,lng); 
+                X.Text = coordinates[0];
+                Y.Text = coordinates[1];
             }
+        }
+
+        public List<string> Convertion(double lat,double lng)
+        {
+            string latitude = Convert.ToString(lat);
+            string longitude = Convert.ToString(lng);
+
+            List<string> coordinates = new List<string>();
+
+            coordinates.Add(latitude);
+            coordinates.Add(longitude);
+
+            return coordinates;
         }
 
         public void ShowMarkerCoordinates(GMap.NET.WindowsForms.GMapControl gMap, GMapMarker item, TextBox X, TextBox Y,TextBox Mark,TextBox Model,TextBox Year,TextBox Capacity,Label km)
@@ -243,7 +258,7 @@ namespace CarSharing
 
             double distance = Math.Ceiling(MyLocation.GetDistanceTo(currentCar)) / 1000;
 
-            km.Text = distance.ToString() + " Км";
+            km.Text = GetString(distance);
 
 
             string[] Info = item.ToolTipText.Replace(";","").Split(' ');
@@ -256,6 +271,11 @@ namespace CarSharing
             }
             
 
+        }
+
+        public string GetString(double kilometers)
+        {
+            return kilometers.ToString() + "Км";
         }
 
         public void ReservationOfCar(TextBox X, TextBox Y, GMap.NET.WindowsForms.GMapControl gMap,DataGridView view, TextBox Mark, TextBox Model, TextBox Year, TextBox Capacity)
@@ -276,7 +296,7 @@ namespace CarSharing
                 table.Columns.Add("Год");
                 table.Columns.Add("Объём");
 
-                string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt";
+                string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarInformation\\CarCoordinates.txt";
                 string coordinates = $"{lat};{lng}";
 
                 if (cars != null)
@@ -348,7 +368,7 @@ namespace CarSharing
 
                     cars.Markers.Add(marker);
 
-                    string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarCoordinates.txt";
+                    string path = "C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\CarInformation\\CarCoordinates.txt";
                     string text = $"{latitude};{longitude}";
 
                     using (StreamWriter wr = new StreamWriter(path))

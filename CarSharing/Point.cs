@@ -60,7 +60,7 @@ namespace CarSharing
                     coordinates.Add(Latitude);
                     coordinates.Add(Longitude);
 
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude),new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\MyLocation.png"));
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(Latitude, Longitude),new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\Images\\MyLocation.png"));
                     marker.ToolTipText = "Моё местоположение";
                     MyLocation.Markers.Add(marker);
 
