@@ -32,9 +32,9 @@ namespace CarSharing
             List<double> coordinates = new List<double>();
             bool abort = false;
 
-            GeoCoordinate coord;
-            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-            GMapOverlay MyLocation = new GMapOverlay("Моё местоположение");
+                GeoCoordinate coord;
+                GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+                GMapOverlay MyLocation = new GMapOverlay("Моё местоположение");
             gMap.Overlays.Add(MyLocation);
 
             if (watcher.TryStart(false, TimeSpan.FromMilliseconds(3000)))
