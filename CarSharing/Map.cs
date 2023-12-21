@@ -20,7 +20,7 @@ namespace CarSharing
     {
         GMapOverlay poligon = new GMapOverlay("Полигоны Минска");
         GMapOverlay cars = new GMapOverlay("Автомобили");
-        public void GetMap(GMap.NET.WindowsForms.GMapControl gMap)
+        public  void GetMap(GMap.NET.WindowsForms.GMapControl gMap)
         {
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
             gMap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
@@ -314,7 +314,7 @@ namespace CarSharing
                 }
                 else 
                 {
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), GMarkerGoogleType.red_dot);
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(latitude, longitude),new Bitmap("C:\\Users\\maslo\\OneDrive\\Рабочий стол\\Учёба\\3 курс\\1 семестр\\Курсовой проект(Конструирование программного обеспечения)\\CarSharing\\Images\\Car.png"));
                     marker.ToolTip = new GMapRoundedToolTip(marker);
 
                     string infoFromDGV = "";

@@ -18,6 +18,7 @@ namespace CarSharing
     {
         Point point = new Point();
         Map map = new Map();
+        GMap_Load GMap;
         public MainWindow()
         {
             InitializeComponent();
@@ -25,11 +26,14 @@ namespace CarSharing
 
         private void gMapControl1_Load(object sender, EventArgs e)
         {
-            map.GetMap(gMapControl1);
 
-            map.DrawPolygon(gMapControl1);
+            GMap_Load GMap = map.GetMap;
 
-            map.LoadMarker(gMapControl1);
+
+            GMap += map.DrawPolygon;
+
+            GMap += map.LoadMarker;
+            GMap.Invoke(gMapControl1);
 
             point.GetMyLocation(gMapControl1);
 
@@ -61,6 +65,7 @@ namespace CarSharing
 
         }
 
-        
+        delegate void GMap_Load(GMap.NET.WindowsForms.GMapControl gMap);
+
     }
 }
